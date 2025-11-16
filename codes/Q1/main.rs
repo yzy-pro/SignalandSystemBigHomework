@@ -19,7 +19,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     // ===== 步骤 1: 音频文件读取 =====
     println!("步骤 1: 读取音频文件...");
-    let audio_path = "../../工程设计问题-2022/工程设计题15. 调幅信号的解调/project.wav";
+    let audio_path = "../project.wav";
     let audio = AudioData::from_wav(audio_path)?;
     
     // 转换为单声道（如果需要）
@@ -59,8 +59,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         frequencies,
         magnitude,
         "output/Q1_spectrum_lowfreq.png",
-        "Spectrum of Misdemodulated Signal (0-10 kHz)",
-        Some(10000.0),
+        "Spectrum of Misdemodulated Signal (0-4 kHz)",
+        Some(4000.0),
     )?;
 
     // 绘制 dB 刻度的频谱
@@ -72,20 +72,30 @@ fn main() -> Result<(), Box<dyn Error>> {
         Some(10000.0),
     )?;
 
-    // 绘制时域波形（前 0.1 秒）
-    let samples_to_plot = (sample_rate * 0.1) as usize;
+    // // 绘制时域波形（前 0.1 秒）
+    // let samples_to_plot = (sample_rate * 0.1) as usize;
+    // SpectrumVisualizer::plot_waveform(
+    //     &samples,
+    //     sample_rate,
+    //     "output/Q1_waveform.png",
+    //     "Waveform of Misdemodulated Signal (First 0.1s)",
+    //     Some(samples_to_plot),
+    // )?;
+    // 绘制时域波形
+    let audio_duration = num_samples as f64 / sample_rate;
+    let samples_to_plot = (sample_rate * audio_duration) as usize;
     SpectrumVisualizer::plot_waveform(
         &samples,
         sample_rate,
         "output/Q1_waveform.png",
-        "Waveform of Misdemodulated Signal (First 0.1s)",
+        "Waveform of Misdemodulated Signal",
         Some(samples_to_plot),
     )?;
 
     println!();
 
     // ===== 步骤 4: 频率偏差估计 =====
-    println!("步骤 4: 估计频率偏差 f_d...\n");
+    println!("步骤 4: 估计频率偏差 (First 0.1s)f_d...\n");
     
     // 基本频率估计（排除直流，搜索 10 Hz 到 10 kHz）
     let (f_d, peak_mag, peak_idx) = FrequencyEstimator::estimate_frequency_offset(
