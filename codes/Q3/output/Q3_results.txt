@@ -7,15 +7,15 @@ Sampling frequency: f_s = 22050.0000 Hz
 Spectral Analysis:
 ------------------
 Original signal X(f) peak: f = 3225.16 Hz, magnitude = 0.003444
-After high-pass X_h(f) peak: f = 7721.20 Hz, magnitude = 0.000012
-After multiplication X_b(f) peak (baseband): f = 4496.04 Hz, magnitude = 0.000012
-Demodulated signal X_l(f) peak: f = 3799.95 Hz, magnitude = 0.000008
+After high-pass X_h(f) peak: f = 3225.16 Hz, magnitude = 0.002435
+After multiplication X_b(f) peak (baseband): f = 17.63 Hz, magnitude = 0.001724
+Demodulated signal X_l(f) peak: f = 17.63 Hz, magnitude = 0.001724
 
 Energy analysis (0-4000 Hz band):
   Original signal energy: 4.129585e-4
-  Demodulated signal energy: 6.182521e-9
+  Demodulated signal energy: 1.369374e-4
 
 Frequency shift verification:
   Original peak at: 3225.16 Hz
   Expected shift: 0.06 Hz (should be near f_d = 3225.10 Hz)
-  Demodulated peak at: 3799.95 Hz (should be in baseband)
+  Demodulated peak at: 17.63 Hz (should be in baseband)

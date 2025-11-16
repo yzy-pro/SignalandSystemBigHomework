@@ -1,4 +1,5 @@
 use std::f64::consts::PI;
+use num_complex::Complex;
 
 pub struct ButterworthFilter {
     pub b: Vec<f64>,
@@ -22,17 +23,46 @@ impl ButterworthFilter {
     }
 
     pub fn highpass(order: usize, cutoff: f64, sample_rate: f64) -> Self {
-        let (b_lp, a_lp) = design_butterworth_digital_lowpass(order, cutoff, sample_rate);
-        let (b_hp, a_hp) = lowpass_to_highpass(&b_lp, &a_lp);
-        Self { b: b_hp, a: a_hp, order, cutoff, sample_rate, filter_type: FilterType::Highpass }
+        let (b, a) = design_butterworth_digital_highpass(order, cutoff, sample_rate);
+        Self { b, a, order, cutoff, sample_rate, filter_type: FilterType::Highpass }
     }
 }
 
 fn design_butterworth_digital_lowpass(order: usize, cutoff: f64, fs: f64) -> (Vec<f64>, Vec<f64>) {
+    // Pre-warp the cutoff frequency to compensate for bilinear transform distortion
     let wc = 2.0 * fs * (PI * cutoff / fs).tan();
     let poles = butterworth_analog_poles(order);
     let scaled_poles: Vec<_> = poles.iter().map(|(re, im)| (re * wc, im * wc)).collect();
     bilinear_transform_cascade(&scaled_poles, fs)
+}
+
+fn design_butterworth_digital_highpass(order: usize, cutoff: f64, fs: f64) -> (Vec<f64>, Vec<f64>) {
+    // Spectral inversion method: H_HP(z) = H_LP(-z)
+    // The cutoff frequency is mirrored about fs/4
+    // To get highpass with cutoff fc_hp, design lowpass with cutoff (fs/2 - fc_hp)
+    let lp_cutoff = fs / 2.0 - cutoff;
+    
+    // Design a lowpass filter at the mirrored cutoff frequency
+    let (b_lp, a_lp) = design_butterworth_digital_lowpass(order, lp_cutoff, fs);
+    
+    // Convert lowpass to highpass using spectral inversion: H_HP(z) = H_LP(-z)
+    // This means alternating the signs of coefficients with odd indices
+    let mut b_hp = b_lp.clone();
+    let mut a_hp = a_lp.clone();
+    
+    for (i, val) in b_hp.iter_mut().enumerate() {
+        if i % 2 == 1 {
+            *val = -*val;
+        }
+    }
+    
+    for (i, val) in a_hp.iter_mut().enumerate() {
+        if i % 2 == 1 {
+            *val = -*val;
+        }
+    }
+    
+    (b_hp, a_hp)
 }
 
 fn butterworth_analog_poles(order: usize) -> Vec<(f64, f64)> {
