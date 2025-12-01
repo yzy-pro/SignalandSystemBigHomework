@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.27)  1 DEC 2025 20:38
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.27)  1 DEC 2025 22:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -865,34 +865,38 @@ File: codes/Q1/output/Q1_spectrum_db.png Graphic file (type bmp)
 
 
 [20]
+
+[21]
 File: codes/Q1/output/Q1_waveform.png Graphic file (type bmp)
 <codes/Q1/output/Q1_waveform.png>
 
-
-[21]
 
 [22]
 
 [23]
 
 [24]
+
+[25]
+
+[26]
 File: codes/Q2/output/Q2_highpass_magnitude.png Graphic file (type bmp)
 <codes/Q2/output/Q2_highpass_magnitude.png>
 File: codes/Q2/output/Q2_highpass_magnitude_db.png Graphic file (type bmp)
 <codes/Q2/output/Q2_highpass_magnitude_db.png>
 
 
-[25]
+[27]
 File: codes/Q2/output/Q2_highpass_phase.png Graphic file (type bmp)
 <codes/Q2/output/Q2_highpass_phase.png>
 
 
-[26]
+[28]
 File: codes/Q2/output/Q2_lowpass_magnitude.png Graphic file (type bmp)
 <codes/Q2/output/Q2_lowpass_magnitude.png>
 
 
-[27]
+[29]
 File: codes/Q2/output/Q2_lowpass_magnitude_db.png Graphic file (type bmp)
 <codes/Q2/output/Q2_lowpass_magnitude_db.png>
 File: codes/Q2/output/Q2_lowpass_phase.png Graphic file (type bmp)
@@ -901,34 +905,29 @@ File: codes/Q2/output/Q2_combined_magnitude.png Graphic file (type bmp)
 <codes/Q2/output/Q2_combined_magnitude.png>
 
 
-[28]
-
-[29]
-
 [30]
 
 [31]
-File: codes/Q3/output/Q3_original_spectrum.png Graphic file (type bmp)
-<codes/Q3/output/Q3_original_spectrum.png>
-
 
 [32]
 
 [33]
-File: codes/Q3/output/Q3_xh_spectrum.png Graphic file (type bmp)
-<codes/Q3/output/Q3_xh_spectrum.png>
-File: codes/Q3/output/Q3_xb_spectrum.png Graphic file (type bmp)
-<codes/Q3/output/Q3_xb_spectrum.png>
-
 
 [34]
 
 [35]
-File: codes/Q3/output/Q3_xl_spectrum.png Graphic file (type bmp)
-<codes/Q3/output/Q3_xl_spectrum.png>
+File: codes/Q3/output/Q3_original_spectrum.png Graphic file (type bmp)
+<codes/Q3/output/Q3_original_spectrum.png>
+File: codes/Q3/output/Q3_xh_spectrum.png Graphic file (type bmp)
+<codes/Q3/output/Q3_xh_spectrum.png>
 
 
 [36]
+File: codes/Q3/output/Q3_xb_spectrum.png Graphic file (type bmp)
+<codes/Q3/output/Q3_xb_spectrum.png>
+File: codes/Q3/output/Q3_xl_spectrum.png Graphic file (type bmp)
+<codes/Q3/output/Q3_xl_spectrum.png>
+
 
 [37]
 
@@ -940,46 +939,45 @@ File: codes/Q3/output/Q3_xl_spectrum.png Graphic file (type bmp)
 
 [41]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
 [42]
 
 [43]
 
 [44]
+
+[45]
+
+[46]
 File: codes/Q4/output/Q4_original_spectrum.png Graphic file (type bmp)
 <codes/Q4/output/Q4_original_spectrum.png>
 File: codes/Q4/output/Q4_xh_spectrum.png Graphic file (type bmp)
 <codes/Q4/output/Q4_xh_spectrum.png>
-
-
-[45]
 File: codes/Q4/output/Q4_xb_spectrum.png Graphic file (type bmp)
 <codes/Q4/output/Q4_xb_spectrum.png>
-File: codes/Q4/output/Q4_xl_spectrum.png Graphic file (type bmp)
-<codes/Q4/output/Q4_xl_spectrum.png>
 
-
-[46]
 
 [47]
 
 [48]
+File: codes/Q4/output/Q4_xl_spectrum.png Graphic file (type bmp)
+<codes/Q4/output/Q4_xl_spectrum.png>
+
 
 [49]
-File: codes/Q4/output/Q4_vs_Q3_comparison.png Graphic file (type bmp)
-<codes/Q4/output/Q4_vs_Q3_comparison.png>
-
 
 [50]
 
 [51]
 
 [52]
+File: codes/Q4/output/Q4_vs_Q3_full_comparison.png Graphic file (type bmp)
+<codes/Q4/output/Q4_vs_Q3_full_comparison.png>
+
 
 [53]
+File: codes/Q4/output/Q4_vs_Q3_comparison.png Graphic file (type bmp)
+<codes/Q4/output/Q4_vs_Q3_comparison.png>
+
 
 [54]
 
@@ -992,6 +990,11 @@ File: codes/Q4/output/Q4_vs_Q3_comparison.png Graphic file (type bmp)
 [58]
 
 [59]
+Overfull \hbox (2.7985pt too wide) in paragraph at lines 2240--2241
+[]\TU/FandolSong-Regular(0)/b/n/12 频 率 偏 差 估 计\TU/FandolSong-Regular(0)/m/n/12 ：|  发 现 频 谱 在 \TU/lmr/m/n/12 3000 Hz \TU/FandolSong-Regular(0)/m/n/12 附 近 对 称 分 布，|  通 过 对 称 峰 值 法  |（\TU/lmr/m/n/12 2775.20
+ []
+
+
 
 [60]
 
@@ -1028,206 +1031,203 @@ File: codes/Q4/output/Q4_vs_Q3_comparison.png Graphic file (type bmp)
 [76]
 
 [77]
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-
 
 [78]
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
-
 
 [79]
 
 [80]
 
 [81]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 3154.
- (./codes/Q1/src/main.rs
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+
 
 [82]
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no │ (U+2502) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ├ (U+251C) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no └ (U+2514) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+Missing character: There is no ─ (U+2500) in font [lmmono12-regular]:!
+
 
 [83]
-Missing character: There is no ≈ (U+2248) in font [lmmono8-regular]:!
-Missing character: There is no ≈ (U+2248) in font [lmmono8-regular]:!
-
 
 [84]
-Missing character: There is no π (U+03C0) in font [lmmono8-regular]:!
-) (./codes/Q1/src/audio_reader.rs
 
 [85]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 3263.
+ (./codes/Q1/src/main.rs
 
 [86]
 
-[87]) (./codes/Q1/src/fft_processor.rs
+[87]
 
 [88]
 
 [89]
+Missing character: There is no π (U+03C0) in font [lmmono8-regular]:!
+) (./codes/Q1/src/audio_reader.rs
 
-[90])
+[90]
 
-[91] (./codes/Q1/src/frequency_estimator.rs
+[91])
 
-[92]
+[92] (./codes/Q1/src/fft_processor.rs
 
 [93]
 
 [94]
 
-[95]
+[95]) (./codes/Q1/src/frequency_estimator.rs
 
-[96]) (./codes/Q1/src/spectrum_visualizer.rs
+[96]
 
 [97]
 
@@ -1235,9 +1235,9 @@ Missing character: There is no π (U+03C0) in font [lmmono8-regular]:!
 
 [99]
 
-[100]
+[100])
 
-[101]) (./codes/Q2/src/main.rs
+[101] (./codes/Q1/src/spectrum_visualizer.rs
 
 [102]
 
@@ -1245,25 +1245,35 @@ Missing character: There is no π (U+03C0) in font [lmmono8-regular]:!
 
 [104]
 
-[105]) (./codes/Q2/src/butterworth_filter.rs
+[105])
 
-[106]
+[106] (./codes/Q2/src/main.rs
 
-[107])
+[107]
 
-[108] (./codes/Q2/src/response_visualizer.rs
+[108]
 
 [109]
 
-[110]
+[110]) (./codes/Q2/src/butterworth_filter.rs
 
-[111])
+[111]
 
-[112] (./codes/Q3/src/main.rs
+[112]) (./codes/Q2/src/response_visualizer.rs
 
 [113]
 
 [114]
+
+[115]
+
+[116]) (./codes/Q3/src/main.rs
+
+[117]
+
+[118]
+
+[119]
 Overfull \hbox (30.08682pt too wide) in paragraph at lines 117--118
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -1275,69 +1285,74 @@ Overfull \hbox (30.08682pt too wide) in paragraph at lines 123--124
 
 
 
-[115]
-
-[116]
-
-[117]) (./codes/Q3/src/audio_reader.rs) (./codes/Q3/src/iir_filter.rs
-
-[118]) (./codes/Q3/src/demodulator.rs
-
-[119]) (./codes/Q3/src/spectrum_analyzer.rs
-
 [120]
 
-[121]) (./codes/Q3/src/audio_writer.rs
+[121])
 
-[122]) (./codes/Q4/src/main.rs
+[122] (./codes/Q3/src/audio_reader.rs) (./codes/Q3/src/iir_filter.rs
 
-[123]
+[123]) (./codes/Q3/src/demodulator.rs
 
-[124]
+[124]) (./codes/Q3/src/spectrum_analyzer.rs
 
 [125]
-Overfull \hbox (30.08682pt too wide) in paragraph at lines 132--133
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
 
+[126]) (./codes/Q3/src/audio_writer.rs
 
-Overfull \hbox (30.08682pt too wide) in paragraph at lines 138--139
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
+[127]) (./codes/Q4/src/main.rs
 
-
-
-[126]
-
-[127]) (./codes/Q4/src/audio_reader.rs
-
-[128]) (./codes/Q4/src/ideal_filter.rs
+[128]
 
 [129]
 
-[130]) (./codes/Q4/src/frequency_shifter.rs
-Missing character: There is no π (U+03C0) in font [lmmono8-regular]:!
+[130]
+Overfull \hbox (30.08682pt too wide) in paragraph at lines 136--137
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (30.08682pt too wide) in paragraph at lines 142--143
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
 
 
 [131]
 
-[132]) (./codes/Q4/src/spectrum_analyzer.rs)
+[132]) (./codes/Q4/src/audio_reader.rs
 
-[133] (./codes/Q4/src/audio_writer.rs) (./codes/Q4/src/comparator.rs
+[133]) (./codes/Q4/src/ideal_filter.rs
 
 [134]
 
-[135]
+[135]) (./codes/Q4/src/frequency_shifter.rs
+Missing character: There is no π (U+03C0) in font [lmmono8-regular]:!
+
+
+[136]
+
+[137]) (./codes/Q4/src/spectrum_analyzer.rs)
+
+[138] (./codes/Q4/src/audio_writer.rs) (./codes/Q4/src/comparator.rs
+
+[139]
+
+[140]
 Missing character: There is no ✓ (U+2713) in font [lmmono8-regular]:!
+
+
+[141]
 Missing character: There is no ✓ (U+2713) in font [lmmono8-regular]:!
 Missing character: There is no ✗ (U+2717) in font [lmmono8-regular]:!
 Missing character: There is no ✓ (U+2713) in font [lmmono8-regular]:!
 Missing character: There is no ✓ (U+2713) in font [lmmono8-regular]:!
 
 
-[136])
+[142]
 
-[137] (./EngineeringDesignAssignmentReport.aux)
+[143])
+
+[144] (./EngineeringDesignAssignmentReport.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
@@ -1346,12 +1361,12 @@ Package rerunfilecheck Info: File `EngineeringDesignAssignmentReport.out' has no
 (rerunfilecheck)             Checksum: 43D63172873D23ECDE92454B7772A5B9;20053.
  ) 
 Here is how much of TeX's memory you used:
- 29725 strings out of 470267
- 659377 string characters out of 5484665
- 1416799 words of memory out of 5000000
- 55807 multiletter control sequences out of 15000+600000
+ 29757 strings out of 470267
+ 660144 string characters out of 5484665
+ 1409799 words of memory out of 5000000
+ 55838 multiletter control sequences out of 15000+600000
  632541 words of font info for 93 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  93i,16n,112p,495b,1942s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on EngineeringDesignAssignmentReport.xdv (138 pages, 3209004 bytes).
+Output written on EngineeringDesignAssignmentReport.xdv (145 pages, 3409460 bytes).

@@ -1,0 +1,12 @@
+Parameter,Value,Unit
+Sample Rate,22050.00,Hz
+Number of Samples,31265,samples
+Duration,1.4179,s
+Frequency Resolution,0.7053,Hz
+Nyquist Frequency,11025.00,Hz
+Frequency Offset (Basic),3225.16,Hz
+Frequency Offset (Refined),3225.1032,Hz
+Peak Magnitude,0.003444,-
+Baseband Bandwidth,4000.0,Hz
+Highpass Cutoff,3225.1032,Hz
+Lowpass Cutoff,4000.0,Hz

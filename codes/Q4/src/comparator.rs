@@ -4,6 +4,7 @@ pub struct ComparisonResult {
     pub mse: f64,
     pub max_diff: f64,
     pub correlation: f64,
+    pub correlation_normalized: f64,
     pub snr_db: f64,
 }
 
@@ -24,7 +25,7 @@ pub fn compare_signals(signal1: &[f64], signal2: &[f64]) -> ComparisonResult {
         .map(|i| (signal1[i] - signal2[i]).abs())
         .fold(0.0f64, f64::max);
     
-    // Correlation coefficient
+    // Correlation coefficient (original)
     let mean1 = signal1[..n].iter().sum::<f64>() / n as f64;
     let mean2 = signal2[..n].iter().sum::<f64>() / n as f64;
     
@@ -46,6 +47,39 @@ pub fn compare_signals(signal1: &[f64], signal2: &[f64]) -> ComparisonResult {
         0.0
     };
     
+    // Correlation coefficient with amplitude normalization
+    // Normalize both signals to [-1, 1] range based on their max absolute value
+    let max_abs1 = signal1[..n].iter().map(|&x| x.abs()).fold(0.0f64, f64::max);
+    let max_abs2 = signal2[..n].iter().map(|&x| x.abs()).fold(0.0f64, f64::max);
+    
+    let correlation_normalized = if max_abs1 > 0.0 && max_abs2 > 0.0 {
+        let norm1: Vec<f64> = signal1[..n].iter().map(|&x| x / max_abs1).collect();
+        let norm2: Vec<f64> = signal2[..n].iter().map(|&x| x / max_abs2).collect();
+        
+        let mean_norm1 = norm1.iter().sum::<f64>() / n as f64;
+        let mean_norm2 = norm2.iter().sum::<f64>() / n as f64;
+        
+        let cov_norm: f64 = (0..n)
+            .map(|i| (norm1[i] - mean_norm1) * (norm2[i] - mean_norm2))
+            .sum::<f64>() / n as f64;
+        
+        let var_norm1: f64 = (0..n)
+            .map(|i| (norm1[i] - mean_norm1).powi(2))
+            .sum::<f64>() / n as f64;
+        
+        let var_norm2: f64 = (0..n)
+            .map(|i| (norm2[i] - mean_norm2).powi(2))
+            .sum::<f64>() / n as f64;
+        
+        if var_norm1 > 0.0 && var_norm2 > 0.0 {
+            cov_norm / (var_norm1.sqrt() * var_norm2.sqrt())
+        } else {
+            0.0
+        }
+    } else {
+        0.0
+    };
+    
     // Signal-to-Noise Ratio (treating difference as noise)
     let signal_power: f64 = signal1[..n].iter().map(|&x| x * x).sum::<f64>() / n as f64;
     let noise_power = mse;
@@ -60,6 +94,7 @@ pub fn compare_signals(signal1: &[f64], signal2: &[f64]) -> ComparisonResult {
         mse,
         max_diff,
         correlation,
+        correlation_normalized,
         snr_db,
     }
 }
@@ -72,21 +107,27 @@ pub fn save_comparison(result: &ComparisonResult, filename: &str) {
     content.push_str(&format!("Mean Squared Error (MSE): {:.6e}\n", result.mse));
     content.push_str(&format!("Root Mean Squared Error (RMSE): {:.6e}\n", result.mse.sqrt()));
     content.push_str(&format!("Maximum absolute difference: {:.6}\n", result.max_diff));
-    content.push_str(&format!("Correlation coefficient: {:.6}\n", result.correlation));
+    content.push_str(&format!("Correlation coefficient (original): {:.6}\n", result.correlation));
+    content.push_str(&format!("Correlation coefficient (normalized): {:.6}\n", result.correlation_normalized));
     content.push_str(&format!("Signal-to-Noise Ratio: {:.2} dB\n\n", result.snr_db));
     
     content.push_str("Interpretation:\n");
     content.push_str("---------------\n");
     
-    if result.correlation > 0.99 {
-        content.push_str("✓ Excellent correlation - signals are nearly identical\n");
-    } else if result.correlation > 0.95 {
-        content.push_str("✓ Good correlation - signals are very similar\n");
-    } else if result.correlation > 0.8 {
-        content.push_str("~ Moderate correlation - some differences present\n");
+    // Use normalized correlation for interpretation (more accurate for waveform similarity)
+    if result.correlation_normalized > 0.99 {
+        content.push_str("✓ Excellent correlation (normalized) - waveforms are nearly identical\n");
+    } else if result.correlation_normalized > 0.95 {
+        content.push_str("✓ Good correlation (normalized) - waveforms are very similar\n");
+    } else if result.correlation_normalized > 0.8 {
+        content.push_str("~ Moderate correlation (normalized) - some waveform differences\n");
     } else {
-        content.push_str("✗ Low correlation - significant differences\n");
+        content.push_str("✗ Low correlation (normalized) - significant waveform differences\n");
     }
+    
+    content.push_str(&format!("\nNote: Normalized correlation ({:.3}) adjusts for amplitude differences,\n", result.correlation_normalized));
+    content.push_str("      providing a better measure of waveform shape similarity.\n");
+    content.push_str(&format!("      Original correlation ({:.3}) is affected by both amplitude and shape.\n", result.correlation));
     
     if result.snr_db > 40.0 {
         content.push_str("✓ Excellent SNR - minimal difference\n");
@@ -113,7 +154,64 @@ pub fn save_comparison(result: &ComparisonResult, filename: &str) {
     std::fs::write(filename, content).expect("Failed to save comparison");
 }
 
-/// Plot comparison of two signals
+/// Plot full-time comparison of two signals (all samples)
+pub fn plot_full_comparison(signal1: &[f64], signal2: &[f64], filename: &str) {
+    let n = signal1.len().min(signal2.len());
+    
+    let root = BitMapBackend::new(filename, (1600, 600)).into_drawing_area();
+    root.fill(&WHITE).unwrap();
+    
+    let max_val = signal1[..n].iter()
+        .chain(signal2[..n].iter())
+        .fold(0.0f64, |max, &x| max.max(x.abs()));
+    
+    let mut chart = ChartBuilder::on(&root)
+        .caption("Q4 vs Q3 Signal Comparison (Full Waveform)", ("sans-serif", 40))
+        .margin(20)
+        .x_label_area_size(50)
+        .y_label_area_size(60)
+        .build_cartesian_2d(0..n, -max_val*1.1..max_val*1.1)
+        .unwrap();
+    
+    chart
+        .configure_mesh()
+        .x_desc("Sample")
+        .y_desc("Amplitude")
+        .draw()
+        .unwrap();
+    
+    // Plot Q4 signal
+    chart
+        .draw_series(LineSeries::new(
+            (0..n).map(|i| (i, signal1[i])),
+            &BLUE,
+        ))
+        .unwrap()
+        .label("Q4 (Frequency-domain)")
+        .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &BLUE));
+    
+    // Plot Q3 signal  
+    chart
+        .draw_series(LineSeries::new(
+            (0..n).map(|i| (i, signal2[i])),
+            &RED,
+        ))
+        .unwrap()
+        .label("Q3 (Time-domain)")
+        .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &RED));
+    
+    chart
+        .configure_series_labels()
+        .background_style(&WHITE.mix(0.8))
+        .border_style(&BLACK)
+        .draw()
+        .unwrap();
+    
+    root.present().unwrap();
+    println!("  Saved: {}", filename);
+}
+
+/// Plot comparison of two signals (first 2000 samples for detail)
 pub fn plot_comparison(signal1: &[f64], signal2: &[f64], filename: &str) {
     let n = signal1.len().min(signal2.len()).min(2000); // Plot first 2000 samples
     
@@ -125,7 +223,7 @@ pub fn plot_comparison(signal1: &[f64], signal2: &[f64], filename: &str) {
         .fold(0.0f64, |max, &x| max.max(x.abs()));
     
     let mut chart = ChartBuilder::on(&root)
-        .caption("Q4 vs Q3 Signal Comparison", ("sans-serif", 40))
+        .caption("Q4 vs Q3 Signal Comparison (Detail View)", ("sans-serif", 40))
         .margin(20)
         .x_label_area_size(50)
         .y_label_area_size(60)

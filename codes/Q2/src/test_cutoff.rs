@@ -8,7 +8,7 @@ use butterworth_filter::ButterworthFilter;
 
 fn main() {
     let sample_rate = 22050.0;
-    let designed_cutoff_hp = 3225.1032;
+    let designed_cutoff_hp = 3000.0;  // 使用对称峰值法确定的频率偏差
     let designed_cutoff_lp = 4000.0;
     
     println!("=== Testing Filter Cutoff Frequencies ===\n");

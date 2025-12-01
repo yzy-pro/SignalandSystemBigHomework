@@ -1,15 +1,20 @@
 Q4 vs Q3 Comparison Results
 ============================
 
-Mean Squared Error (MSE): 4.738559e-2
-Root Mean Squared Error (RMSE): 2.176823e-1
-Maximum absolute difference: 0.905940
-Correlation coefficient: 0.740998
-Signal-to-Noise Ratio: -21.59 dB
+Mean Squared Error (MSE): 4.990101e-2
+Root Mean Squared Error (RMSE): 2.233853e-1
+Maximum absolute difference: 0.927375
+Correlation coefficient (original): 0.402070
+Correlation coefficient (normalized): 0.402070
+Signal-to-Noise Ratio: -20.76 dB
 
 Interpretation:
 ---------------
-✗ Low correlation - significant differences
+✗ Low correlation (normalized) - significant waveform differences
+
+Note: Normalized correlation (0.402) adjusts for amplitude differences,
+      providing a better measure of waveform shape similarity.
+      Original correlation (0.402) is affected by both amplitude and shape.
 ~ Low SNR - noticeable difference
 
 Method differences:

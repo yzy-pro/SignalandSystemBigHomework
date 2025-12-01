@@ -8,6 +8,10 @@ default-run = "q1"
 name = "q1"
 path = "src/main.rs"
 
+[[bin]]
+name = "export_csv"
+path = "src/export_csv.rs"
+
 [dependencies]
 # 音频文件处理
 hound = "3.5"

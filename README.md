@@ -14,4 +14,4 @@
     * Q2：[Q2结果文件](codes/Q2/output/)
     * Q3：[Q3结果文件](codes/Q3/output/)
     * Q4：[Q4结果文件](codes/Q4/output/)
-* 讲解视频：<video controls src="videos/1.mp4" title="Title"></video>
+* 讲解视频：<video controls src="videos/template.mp4" title="Title"></video>

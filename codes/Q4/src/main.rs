@@ -100,12 +100,16 @@ fn main() {
         println!("  Q3 vs Q4 comparison:");
         println!("    MSE: {:.6e}", comparison.mse);
         println!("    Max difference: {:.6}", comparison.max_diff);
-        println!("    Correlation: {:.6}", comparison.correlation);
+        println!("    Correlation (original): {:.6}", comparison.correlation);
+        println!("    Correlation (normalized): {:.6}", comparison.correlation_normalized);
         
         // Save comparison results
         comparator::save_comparison(&comparison, "output/Q4_comparison.txt");
         
-        // Plot comparison
+        // Plot full-time comparison (all samples)
+        comparator::plot_full_comparison(&xl_samples, &q3_samples, "output/Q4_vs_Q3_full_comparison.png");
+        
+        // Plot detailed comparison (first 2000 samples)
         comparator::plot_comparison(&xl_samples, &q3_samples, "output/Q4_vs_Q3_comparison.png");
     } else {
         println!("  Warning: Could not read Q3 results for comparison");

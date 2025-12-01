@@ -122,6 +122,53 @@ fn main() -> Result<(), Box<dyn Error>> {
         20, // 最小间隔 20 个采样点
         threshold,
     );
+    
+    // 通过对称峰值分析确定真实的频率偏差
+    println!("\n=== 对称峰值分析 ===");
+    println!("检测到的峰值：");
+    for (i, (freq, mag, _)) in peaks.iter().enumerate() {
+        println!("  峰值 {}: {:.2} Hz (幅度: {:.6})", i + 1, freq, mag);
+    }
+    
+    // 寻找对称峰值对（幅度相近的峰值）
+    // 仅在低频区域 (0-5000 Hz) 内搜索，因为频率偏差应该在这个范围内
+    let mut symmetric_pairs = Vec::new();
+    for i in 0..peaks.len() {
+        for j in (i+1)..peaks.len() {
+            let (f1, mag1, _) = peaks[i];
+            let (f2, mag2, _) = peaks[j];
+            
+            // 只考虑低频区域的峰值
+            if f1 > 5000.0 || f2 > 5000.0 {
+                continue;
+            }
+            
+            let mag_ratio = mag1.min(mag2) / mag1.max(mag2);
+            // 如果幅度相差小于10%，认为是对称峰值对
+            if mag_ratio > 0.9 {
+                let axis = (f1 + f2) / 2.0;
+                let baseband = (f2 - f1).abs() / 2.0;
+                symmetric_pairs.push((f1, f2, axis, mag1, mag2, baseband));
+            }
+        }
+    }
+    
+    // 选择最佳的对称轴（幅度最大的对称峰值对）
+    let f_d_symmetric = if let Some(&(f1, f2, axis, mag1, mag2, baseband)) = symmetric_pairs
+        .iter()
+        .max_by(|a, b| a.3.partial_cmp(&b.3).unwrap()) {
+        println!("\n找到对称峰值对：");
+        let (lower_freq, lower_mag) = if f1 < f2 { (f1, mag1) } else { (f2, mag2) };
+        let (upper_freq, upper_mag) = if f1 > f2 { (f1, mag1) } else { (f2, mag2) };
+        println!("  下边带峰值: {:.2} Hz (幅度: {:.6})", lower_freq, lower_mag);
+        println!("  上边带峰值: {:.2} Hz (幅度: {:.6})", upper_freq, upper_mag);
+        println!("  频谱对称轴: {:.2} Hz ← 真实的频率偏差 f_d", axis);
+        println!("  基带频率成分: {:.2} Hz", baseband);
+        axis
+    } else {
+        println!("警告：未找到明显的对称峰值对，使用峰值搜索结果");
+        f_d_refined
+    };
 
     // 计算能量分布
     let energy_bands = vec![
@@ -147,30 +194,34 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!("\n========================================");
     println!("分析结果总结");
     println!("========================================");
-    println!("1. 估计的频率偏差:");
-    println!("   f_d ≈ {:.2} Hz (基本估计)", f_d);
-    println!("   f_d ≈ {:.4} Hz (精确估计)", f_d_refined);
+    println!("1. 频率偏差估计:");
+    println!("   峰值搜索法: {:.2} Hz (单个峰值)", f_d);
+    println!("   抛物线插值: {:.4} Hz (精确峰值)", f_d_refined);
+    println!("   对称峰值法: {:.2} Hz (频谱对称轴) ← 推荐使用", f_d_symmetric);
     println!();
-    println!("2. 关于 f_c_tilde 与 f_c 的大小关系:");
-    println!("   - 仅从幅度谱无法唯一确定 f_c_tilde > f_c 还是 f_c_tilde < f_c");
-    println!("   - 原因: AM 信号的频谱具有对称性");
-    println!("   - 无论 f_c_tilde > f_c 还是 f_c_tilde < f_c，");
-    println!("     错误解调后的信号频谱形态相同");
+    println!("   说明：");
+    println!("   - 单个峰值 ({:.2} Hz) 反映的是原始信号的能量分布", f_d_refined);
+    println!("   - 频谱对称轴 ({:.2} Hz) 才是真实的频率偏差 f_d = f_c - f̃_c", f_d_symmetric);
+    println!();
+    println!("2. 关于 f̃_c 与 f_c 的大小关系:");
+    println!("   - 仅从幅度谱无法唯一确定 f̃_c > f_c 还是 f̃_c < f_c");
+    println!("   - 原因: AM 信号的频谱具有共轭对称性");
+    println!("   - 无论符号如何，错误解调后的幅度谱都相同");
     println!();
     println!("3. 对解调结果的影响:");
     println!("   - 频率偏差的符号不影响二次解调的效果");
-    println!("   - 因为我们使用的是 |f_c_tilde - f_c| = f_d");
+    println!("   - 因为我们使用的是 |f_c - f̃_c| = f_d");
     println!("   - 二次解调时使用 cos(2πf_d·t)，无论符号如何都能正确解调");
     println!();
     println!("4. 所有图形已保存到 output 目录:");
     println!("   - Q1_spectrum_full.png: 全频段频谱");
-    println!("   - Q1_spectrum_lowfreq.png: 低频段频谱 (0-10 kHz)");
+    println!("   - Q1_spectrum_lowfreq.png: 低频段频谱 (0-4 kHz)");
     println!("   - Q1_spectrum_db.png: dB 刻度频谱");
     println!("   - Q1_waveform.png: 时域波形");
     println!("========================================\n");
 
-    // 保存关键数据供后续使用
-    save_results_for_q2(f_d_refined, sample_rate)?;
+    // 保存关键数据供后续使用（使用对称峰值法确定的频率偏差）
+    save_results_for_q2(f_d_symmetric, sample_rate)?;
 
     Ok(())
 }

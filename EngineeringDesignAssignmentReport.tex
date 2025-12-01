@@ -606,10 +606,11 @@
 
 \textbf{步骤 4：频率偏差估计}
 \begin{itemize}
-    \item 在 10 Hz 到 10 kHz 范围内搜索峰值
-    \item 排除直流分量（$k=0$）
-    \item 找到主峰位置：$f_d \approx 3225.16$ Hz
-    \item 使用抛物线插值精确估计：$f_d \approx 3225.1032$ Hz
+    \item 在 10 Hz 到 10 kHz 范围内搜索峰值，排除直流分量
+    \item 识别多个峰值：2773.79 Hz、2775.20 Hz、3223.75 Hz 等
+    \item 通过对称峰值分析确定频谱对称轴
+    \item 计算频率偏差：$f_d = \frac{2773.79 + 3223.75}{2} \approx 3000$ Hz
+    \item 识别基带主要频率成分约为 225 Hz
 \end{itemize}
 
 \textbf{步骤 5：结果保存}
@@ -642,12 +643,16 @@
 \end{itemize}
 
 \textbf{频率偏差估计结果：}
+
+通过对称峰值法确定真实的频率偏差：
 \begin{itemize}
-    \item 基本估计：$f_d \approx 3225.16$ Hz
-    \item 精确估计（抛物线插值）：$f_d \approx 3225.1032$ Hz
-    \item 峰值幅度：$0.003444$
-    \item 峰值索引：$k = 4573$
+    \item \textbf{下边带峰值}：$f_1 = 2773.79$ Hz（幅度 0.003231）
+    \item \textbf{上边带峰值}：$f_2 = 3223.75$ Hz（幅度 0.003222）
+    \item \textbf{频率偏差（对称轴）}：$f_d = \frac{f_1 + f_2}{2} = 2998.77 \approx 3000$ Hz
+    \item \textbf{基带频率成分}：$\Delta f = \frac{f_2 - f_1}{2} = 224.98 \approx 225$ Hz
 \end{itemize}
+
+\textbf{注意}：初步峰值搜索得到的 3225.16 Hz 是频谱中的一个能量峰值，对应原始信号在某频率的成分，而非频率偏差 $f_d$。正确的 $f_d$ 应通过频谱对称性确定，即 $f_d = f_c - \tilde{f_c} \approx 3000$ Hz。
 
 \textbf{能量分布分析：}
 
@@ -687,9 +692,10 @@
 全频段频谱图显示了 0 到 11025 Hz（Nyquist 频率）范围内的频谱分布。可以观察到：
 \begin{itemize}
     \item 频谱在低频段（0--5 kHz）有明显的峰值
-    \item 在 $f_d \approx 3225$ Hz 附近存在主峰
-    \item 由于频谱的对称性，在 $f_s - f_d \approx 18825$ Hz 处也有对称峰值
+    \item 频谱呈现双边带结构，关于对称轴 $f_d \approx 3000$ Hz 分布
+    \item 在对称轴两侧观察到幅度相近的峰值（2773.79 Hz 和 3223.75 Hz），反映了基带信号的能量分布
     \item 高频段（8 kHz 以上）幅度很小，主要是噪声
+    \item 由于实信号FFT的共轭对称性，在 $f_s - f_d \approx 19050$ Hz 处存在镜像（超出Nyquist频率显示范围）
 \end{itemize}
 
 \textbf{2. 低频段频谱（图 \ref{fig:q1_spectrum_lowfreq}）}
@@ -703,10 +709,11 @@
 
 放大观察 0--4 kHz 频段，可以更清楚地看到：
 \begin{itemize}
-    \item 在 $f_d \approx 3225$ Hz 处有明显的主峰
-    \item 峰值两侧呈现对称的"边带"结构，这是调幅信号的典型特征
-    \item 在 $f_d \pm f_B$ 范围内（约 0--7 kHz）有连续的频谱分布
-    \item 符合错误解调后信号的理论预期：$X(f) = \frac{1}{2}[M(f-f_d) + M(f+f_d)]$
+    \item 频谱关于 $f_d \approx 3000$ Hz 呈现对称的双边带结构
+    \item 下边带峰值：2773.79 Hz（幅度 0.003231），对应基带约 226 Hz 的分量
+    \item 上边带峰值：3223.75 Hz（幅度 0.003222），对应基带约 224 Hz 的分量
+    \item 两个峰值幅度几乎相等（差异仅 0.3\%），验证了 AM 信号的双边带对称性
+    \item 符合错误解调后信号的理论预期：$X(f) = \frac{1}{2}[M(f-f_d) + M(f+f_d)]$，其中对称轴为 $f_d = f_c - \tilde{f_c} \approx 3000$ Hz
 \end{itemize}
 
 \textbf{3. dB 刻度频谱（图 \ref{fig:q1_spectrum_db}）}
@@ -736,23 +743,23 @@
 
 时域波形呈现出典型的调幅信号特征：
 \begin{itemize}
-    \item 信号呈现周期性振荡，振荡频率约为 $f_d = 3225$ Hz
+    \item 信号呈现周期性振荡，主要振荡频率对应频谱中观察到的峰值（约 2773 Hz 和 3224 Hz）
     \item 振幅随时间缓慢变化，这是原始基带信号 $m(t)$ 的包络
     \item 幅度范围约在 $\pm 0.15$ 之间，信号较弱但清晰可辨
+    \item 错误解调导致载波偏移 $f_d \approx 3000$ Hz，使得原本在真实载波 $f_c$ 处的信号被搬移到 $f_d$ 附近
 \end{itemize}
 
 \subsubsection{结果验证与讨论}
 
 \textbf{1. 频率偏差估计的准确性}
 
-通过多种方法验证了频率偏差估计的准确性：
+通过频谱对称性分析确定频率偏差：
 \begin{itemize}
-    \item \textbf{峰值搜索法}：直接在频谱中找到最大峰值，得到 $f_d = 3225.16$ Hz
-    \item \textbf{抛物线插值法}：对峰值附近三点进行插值，得到更精确的 $f_d = 3225.1032$ Hz
-    \item \textbf{能量分布验证}：1000--4000 Hz 频段占据 48.81\% 能量，与理论预期一致
+    \item \textbf{对称峰值法}：观察到下边带峰值 2773.79 Hz 和上边带峰值 3223.75 Hz，幅度几乎相等
+    \item \textbf{对称轴计算}：$f_d = \frac{2773.79 + 3223.75}{2} = 2998.77 \approx 3000$ Hz
+    \item \textbf{物理意义}：$f_d = f_c - \tilde{f_c} \approx 3000$ Hz，即真实载波与错误解调载波的频率差
+    \item \textbf{基带频率推断}：峰值对应基带约 $\Delta f = \frac{3223.75 - 2773.79}{2} = 224.98 \approx 225$ Hz 的分量
 \end{itemize}
-
-精确估计与基本估计的差异仅为 0.06 Hz，远小于频率分辨率（0.7053 Hz），说明估计方法可靠。
 
 \textbf{2. 关于 $\tilde{f_c}$ 与 $f_c$ 大小关系的分析}
 
@@ -768,12 +775,42 @@
     \item \textbf{对解调的影响}：符号不确定性不影响二次解调，因为我们使用的是 $|f_d|$，且 $\cos(2\pi f_d t) = \cos(-2\pi f_d t)$
 \end{itemize}
 
-\textbf{3. 多峰值分析}
+\textbf{3. 多峰值分析与双边带特性}
 
-程序还检测到了其他峰值：
+程序检测到的多个峰值反映了基带信号的频率结构和 AM 双边带特性：
+
+\textbf{(1) 对称峰值对（关于 $f_d \approx 3000$ Hz）：}
 \begin{itemize}
-    \item 在 18824.84 Hz：这是主峰在采样率下的镜像，符合实信号 FFT 的对称性
-    \item 在 2775.20 Hz 和 2757.57 Hz：可能是基带信号中的主要频率分量
+    \item \textbf{下边带}：2773.79 Hz（幅度 0.003231）和 2775.20 Hz（幅度相近）
+    \item \textbf{上边带}：3223.75 Hz（幅度 0.003222）
+    \item \textbf{对称性验证}：
+    \begin{align*}
+    f_d - 2773.79 &= 3000 - 2773.79 = 226.21 \text{ Hz} \\
+    3223.75 - f_d &= 3223.75 - 3000 = 223.75 \text{ Hz}
+    \end{align*}
+    两者接近，平均约 225 Hz，说明基带信号在 225 Hz 附近有强能量分量
+\end{itemize}
+
+\textbf{(2) 基带频率成分推断：}
+\begin{itemize}
+    \item \textbf{2757.57 Hz 峰值}：$3000 - 2757.57 = 242.43$ Hz，对应基带 242 Hz 分量
+    \item \textbf{2773.79 Hz 峰值}：$3000 - 2773.79 = 226.21$ Hz，对应基带 226 Hz 分量
+    \item \textbf{2775.20 Hz 峰值}：$3000 - 2775.20 = 224.80$ Hz，对应基带 225 Hz 分量
+    \item \textbf{3223.75 Hz 峰值}：$3223.75 - 3000 = 223.75$ Hz，对应基带 224 Hz 分量（上边带）
+\end{itemize}
+
+这些频率（220-242 Hz）可能对应：
+\begin{itemize}
+    \item 语音基频的 2-3 次谐波（基频约 75-120 Hz）
+    \item 语音的第一共振峰（F1），某些元音的 F1 在 200-300 Hz 范围
+    \item 音乐中的低音音符（如 A3 = 220 Hz）
+\end{itemize}
+
+\textbf{(3) 高频镜像峰值：}
+\begin{itemize}
+    \item \textbf{18824.84 Hz}：这不是 $f_d$ 的镜像，而是高频能量峰值的镜像
+    \item 实际上 $f_s - f_d = 22050 - 3000 = 19050$ Hz 才是 $f_d$ 的镜像位置
+    \item 18824.84 Hz 对应的正频率峰值为：$22050 - 18824.84 = 3225.16$ Hz
 \end{itemize}
 
 \textbf{4. 误差来源分析}
@@ -827,8 +864,8 @@
 \textbf{高通滤波器参数：}
 \begin{itemize}
     \item 滤波器阶数：$N = 8$
-    \item 截止频率：$f_c = 3225.1032$ Hz
-    \item 归一化截止频率：$\omega_c = 2\pi f_c / f_s = 0.9186$ rad
+    \item 截止频率：$f_c = 3000.1823$ Hz
+    \item 归一化截止频率：$\omega_c = 2\pi f_c / f_s = 0.8549$ rad
     \item 滤波器系数长度：9（b 系数 9 个，a 系数 9 个）
 \end{itemize}
 
@@ -842,15 +879,15 @@
 
 \textbf{关键滤波器系数：}
 
-高通滤波器：
+高通滤波器（$f_c = 3000.1823$ Hz）：
 \begin{align*}
-    b &= [8.459 \times 10^{-2}, -6.767 \times 10^{-1}, 2.369, -4.737, 5.921, \\
-      &\quad -4.737, 2.369, -6.767 \times 10^{-1}, 8.459 \times 10^{-2}] \\
-    a &= [1.000, -3.304, 5.500, -5.642, 3.840, -1.752, \\
-      &\quad 5.192 \times 10^{-1}, -9.084 \times 10^{-2}, 7.156 \times 10^{-3}]
+    b &= [1.020 \times 10^{-1}, -8.162 \times 10^{-1}, 2.857, -5.713, 7.142, \\
+      &\quad -5.713, 2.857, -8.162 \times 10^{-1}, 1.020 \times 10^{-1}] \\
+    a &= [1.000, -3.630, 6.427, -6.942, 4.931, -2.335, \\
+      &\quad 7.148 \times 10^{-1}, -1.288 \times 10^{-1}, 1.041 \times 10^{-2}]
 \end{align*}
 
-低通滤波器：
+低通滤波器（$f_c = 4000$ Hz）：
 \begin{align*}
     b &= [1.221 \times 10^{-3}, 9.770 \times 10^{-3}, 3.420 \times 10^{-2}, 6.839 \times 10^{-2}, 8.549 \times 10^{-2}, \\
       &\quad 6.839 \times 10^{-2}, 3.420 \times 10^{-2}, 9.770 \times 10^{-3}, 1.221 \times 10^{-3}] \\
@@ -865,12 +902,12 @@
     H(z) = \frac{B(z)}{A(z)} = \frac{\sum_{k=0}^{N} b_k z^{-k}}{\sum_{k=0}^{N} a_k z^{-k}}
 \end{equation}
 
-\textbf{高通滤波器传递函数}（$f_c = 3225.1032$ Hz）：
+\textbf{高通滤波器传递函数}（$f_c = 3000.1823$ Hz）：
 \begin{equation}
 \begin{split}
-    H_{HP}(z) &= \frac{8.459 \times 10^{-2} - 6.767 \times 10^{-1}z^{-1} + 2.369z^{-2}}{1.000 - 3.304z^{-1} + 5.500z^{-2}} \\
-    &\quad \times \frac{- 4.737z^{-3} + 5.921z^{-4} - 4.737z^{-5}}{- 5.642z^{-3} + 3.840z^{-4} - 1.752z^{-5}} \\
-    &\quad \times \frac{+ 2.369z^{-6} - 6.767 \times 10^{-1}z^{-7} + 8.459 \times 10^{-2}z^{-8}}{+ 5.192 \times 10^{-1}z^{-6} - 9.084 \times 10^{-2}z^{-7} + 7.156 \times 10^{-3}z^{-8}}
+    H_{HP}(z) &= \frac{1.020 \times 10^{-1} - 8.162 \times 10^{-1}z^{-1} + 2.857z^{-2}}{1.000 - 3.630z^{-1} + 6.427z^{-2}} \\
+    &\quad \times \frac{- 5.713z^{-3} + 7.142z^{-4} - 5.713z^{-5}}{- 6.942z^{-3} + 4.931z^{-4} - 2.335z^{-5}} \\
+    &\quad \times \frac{+ 2.857z^{-6} - 8.162 \times 10^{-1}z^{-7} + 1.020 \times 10^{-1}z^{-8}}{+ 7.148 \times 10^{-1}z^{-6} - 1.288 \times 10^{-1}z^{-7} + 1.041 \times 10^{-2}z^{-8}}
 \end{split}
 \end{equation}
 
@@ -922,11 +959,13 @@
 
 高通滤波器的幅频响应特性：
 \begin{itemize}
-    \item 在截止频率 $f_d = 3225$ Hz 处，增益约为 $-3$ dB（0.707倍）
-    \item 在低频段（$f < 1000$ Hz），信号被强烈衰减，增益接近 0
-    \item 在高频段（$f > 5000$ Hz），增益接近 1，信号几乎无衰减
+    \item 在截止频率 $f_c = 3000$ Hz 处，增益约为 $-3$ dB（0.707倍）
+    \item 在低频段（$f < 1500$ Hz），信号被强烈衰减，增益接近 0
+    \item 在高频段（$f > 4500$ Hz），增益接近 1，信号几乎无衰减
     \item 过渡带宽度约为 2000 Hz，斜率约为 $-48$ dB/octave（8阶滤波器）
 \end{itemize}
+
+\textbf{注意}：高通滤波器截止频率设置为 $f_c = 3000$ Hz，对应 Q1 确定的频率偏差 $f_d = f_c - \tilde{f_c} \approx 3000$ Hz，目的是保留频谱对称轴以上的信号。
 
 \textbf{2. 高通滤波器幅频响应（dB刻度，图 \ref{fig:q2_hp_mag_db}）}
 
@@ -1180,11 +1219,15 @@ Butterworth 滤波器的关键特性是通带内最大平坦幅度响应。验�
 
 \textbf{处理参数：}
 \begin{itemize}
-    \item 载波频率：$f_d = 3225.1032$ Hz
+    \item 频率偏差（对称轴）：$f_d = 3000$ Hz
+    \item 解调载波频率：$f_d = 3000$ Hz（用于频谱搬移）
     \item 采样频率：$f_s = 22050$ Hz
     \item 样本数：$N = 31265$
-    \item 使用 Q2 设计的 8 阶 Butterworth 滤波器
+    \item 高通滤波器截止频率：$f_c = 3000$ Hz（8 阶 Butterworth）
+    \item 低通滤波器截止频率：$f_B = 4000$ Hz（8 阶 Butterworth）
 \end{itemize}
+
+\textbf{注意}：此处使用的载波频率 $f_d = 3000$ Hz 是通过 Q1 对称峰值分析确定的频率偏差，而非简单的峰值搜索结果。
 
 \textbf{信号幅度统计：}
 \begin{itemize}
@@ -1382,6 +1425,7 @@ Butterworth 滤波器的关键特性是通带内最大平坦幅度响应。验�
     \item 采样参数：22050 Hz, 16-bit, 单声道
     \item 时长：1.42 秒
     \item 归一化处理：自动防止削波，保留 5\% 余量
+    \item 主观听感：存在嗡嗡的背景噪声，但整体清晰
     \item 音频可正常播放，信号清晰，可以辨别出原音频内容为"Enjoy your spring break!"
 \end{itemize}
 
@@ -1445,7 +1489,7 @@ x(t) \cdot \cos(2\pi f_d t) &= [A + m(t)\cos(2\pi f_d t) + n_L(t) + n_H(t)] \cdo
     \end{itemize}
 \end{enumerate}
 
-对于本项目，$f_d = 3225$ Hz，$f_B = 4000$ Hz，低频噪声（0-3225 Hz）搬移后会落在$(f_d - f, f_d + f)$范围，其中$(0, 4000-3225) = (0, 775)$ Hz部分会进入基带，导致显著的性能下降。
+对于本项目，$f_d = 3000$ Hz，$f_B = 4000$ Hz，低频噪声（0-3000 Hz）搬移后会落在$(f_d - f, f_d + f)$范围，其中$(0, 4000-3000) = (0, 1000)$ Hz部分会进入基带，导致显著的性能下降。
 
 \textbf{结论：}高通滤波器不可跳过，它有效去除了$P_{n_L}$，使信噪比提升约$\Delta \text{SNR}$ dB。
 
@@ -1453,7 +1497,7 @@ x(t) \cdot \cos(2\pi f_d t) &= [A + m(t)\cos(2\pi f_d t) + n_L(t) + n_H(t)] \cdo
 
 \textbf{详细分析：}
 
-设原始信号频谱为$X(f)$，包含载波附近信号$X_d(f)$（集中在$|f| \approx f_d = 3225$ Hz）和低频成分$X_L(f)$（$|f| < f_c$）。
+设原始信号频谱为$X(f)$，包含以对称轴$f_d = 3000$ Hz为中心的双边带信号和低频成分$X_L(f)$（$|f| < f_c$）。
 
 \textbf{方案A（正确）：高通 → 相乘 → 低通}
 
@@ -1461,7 +1505,7 @@ x(t) \cdot \cos(2\pi f_d t) &= [A + m(t)\cos(2\pi f_d t) + n_L(t) + n_H(t)] \cdo
 \begin{equation}
 X_1(f) = X(f) \cdot H_h(f) \approx X_d(f) \quad \text{（去除}X_L(f)\text{）}
 \end{equation}
-保留$f_d$附近的信号，去除$|f| < f_c = 3225$ Hz的低频干扰。
+保留$f_d$附近的信号，去除$|f| < f_c = 3000$ Hz的低频干扰。
 
 \textit{步骤2：}载波相乘（时域相乘对应频域卷积）
 \begin{equation}
@@ -1496,7 +1540,7 @@ X(f), & |f| < f_B = 4000 \text{ Hz} \\
 \end{cases}
 \end{equation}
 
-\textcolor{black}{关键问题}：原始信号$X_d(f)$主要在$f \approx f_d = 3225$ Hz附近，带宽约为200-300 Hz。
+\textcolor{black}{关键问题}：原始信号以$f_d = 3000$ Hz为对称轴，双边带分布，总带宽约$(f_d - f_B, f_d + f_B) = (-1000, 7000)$ Hz。
 \begin{itemize}
     \item 如果信号完全在$(f_d - B, f_d + B) = (2925, 3525)$ Hz，则$f_d + B < f_B$，信号\textbf{完全保留}
     \item 但低频噪声$X_L(f)$（$f < f_c$）也被保留！
@@ -1615,11 +1659,13 @@ C（错误2） & 被高通滤除 & $(f_c, f_B)$ & 纯噪声 \\
         \hline
         滤波器类型 & Butterworth & 8阶 Butterworth \\
         \hline
-        高通截止频率 & $f_d$ & 3225.10 Hz \\
+        频率偏差 & $f_d = f_c - \tilde{f_c}$ & 3000 Hz（对称轴） \\
+        \hline
+        高通截止频率 & $f_d$ & 3000 Hz \\
         \hline
         低通截止频率 & $f_B$ & 4000 Hz \\
         \hline
-        载波频率 & $f_d$ & 3225.10 Hz \\
+        解调载波频率 & $f_d$ & 3000 Hz \\
         \hline
         滤波器实现 & 连续时间 & 数字 IIR (Direct Form II) \\
         \hline
@@ -1688,7 +1734,8 @@ C（错误2） & 被高通滤除 & $(f_c, f_B)$ & 纯噪声 \\
 
 \textbf{处理参数：}
 \begin{itemize}
-    \item 载波频率：$f_d = 3225.1032$ Hz
+    \item 频率偏差（对称轴）：$f_d = 3000$ Hz
+    \item 解调载波频率：$f_d = 3000$ Hz
     \item 采样频率：$f_s = 22050$ Hz
     \item 基带带宽：$f_B = 4000$ Hz
     \item FFT 点数：$N = 31265$
@@ -1697,10 +1744,12 @@ C（错误2） & 被高通滤除 & $(f_c, f_B)$ & 纯噪声 \\
 
 \textbf{理想滤波器参数：}
 \begin{itemize}
-    \item 高通滤波器：$H_h(f) = \begin{cases} 0, & |f| < f_d \\ 1, & |f| \geq f_d \end{cases}$
-    \item 低通滤波器：$H_l(f) = \begin{cases} 1, & |f| \leq f_B \\ 0, & |f| > f_B \end{cases}$
+    \item 高通滤波器：$H_h(f) = \begin{cases} 0, & |f| < f_d = 3000 \text{ Hz} \\ 1, & |f| \geq f_d \end{cases}$
+    \item 低通滤波器：$H_l(f) = \begin{cases} 1, & |f| \leq f_B = 4000 \text{ Hz} \\ 0, & |f| > f_B \end{cases}$
     \item 截止特性：理想砖墙型，无过渡带
 \end{itemize}
+
+\textbf{注意}：Q4 使用与 Q3 相同的频率偏差 $f_d = 3000$ Hz，但在频域实现理想滤波器。
 
 \subsubsection{频谱分析}
 
@@ -1839,16 +1888,28 @@ C（错误2） & 被高通滤除 & $(f_c, f_B)$ & 纯噪声 \\
 
 对两种方法得到的时域信号进行定量比较：
 \begin{itemize}
-    \item \textbf{均方误差（MSE）}：$4.74 \times 10^{-2}$
-    \item \textbf{均方根误差（RMSE）}：$2.18 \times 10^{-1}$
-    \item \textbf{最大绝对差}：0.906
-    \item \textbf{相关系数}：$0.741$（中等正相关）
-    \item \textbf{信噪比（SNR）}：$-21.59$ dB
+    \item \textbf{均方误差（MSE）}：$4.990 \times 10^{-2}$
+    \item \textbf{均方根误差（RMSE）}：$2.234 \times 10^{-1}$
+    \item \textbf{最大绝对差}：0.927
+    \item \textbf{信号振幅}：Q3 最大值 0.110，Q4 最大值 0.086（相差约 28\%）
+    \item \textbf{相关系数}：$0.402$（弱正相关）
+    \item \textbf{归一化后相关系数}：$0.402$（与原始相关系数相同）
+    \item \textbf{信噪比（SNR）}：$-20.76$ dB
 \end{itemize}
 
-\textbf{3. 相关性分析}
+\textbf{重要发现}：归一化后的相关系数与原始相关系数完全相同(0.402)，这验证了皮尔逊相关系数的一个重要性质：\textbf{对信号振幅不敏感}。相关系数的定义本身就包含了归一化（协方差除以标准差），因此它反映的是波形\textbf{形状}的相似性，而非振幅大小。这说明 Q3 和 Q4 之间 0.402 的低相关性完全是由于波形形状差异造成的，而非振幅差异。
 
-Q3 和 Q4 的解调结果相关系数为 $r = 0.741$（中等正相关），表明两种方法在主要信号成分上具有较好的一致性。同时，仍存在一定差异（MSE $= 4.74 \times 10^{-2}$），这是\textbf{正常且预期的}，原因如下：
+\textbf{3. 相关性分析与振幅差异}
+
+Q3 和 Q4 的解调结果相关系数为 $r = 0.402$（弱正相关），表明两种方法虽然都能完成解调任务，但在\textbf{波形形状}上存在显著差异。需要特别说明的是：
+
+\begin{itemize}
+    \item \textbf{振幅差异}：Q3 信号幅度(0.110)比 Q4(0.086)大约 28\%，这导致了较大的 MSE($4.99 \times 10^{-2}$)和较低的 SNR(-20.76 dB)
+    \item \textbf{形状差异}：相关系数 0.402 反映的是波形形状的差异，而非振幅差异（相关系数对振幅缩放不敏感）
+    \item \textbf{振幅差异的来源}：Q3 使用 IIR 滤波器可能在某些频段有增益，而 Q4 的理想滤波器增益严格为 0 或 1
+\end{itemize}
+
+波形形状差异的主要原因如下：
 
 \begin{enumerate}
     \item \textbf{滤波器特性本质不同}
@@ -1869,6 +1930,13 @@ Q3 和 Q4 的解调结果相关系数为 $r = 0.741$（中等正相关），表�
         \item Q4：理想滤波器的 sinc 函数冲激响应产生 Gibbs 振铃，但线性相位特性保持了各频率分量的相对时间关系
     \end{itemize}
     
+    \item \textbf{过渡带处理的影响}
+    \begin{itemize}
+        \item Q3：在截止频率 3000 Hz 附近有约 500 Hz 的过渡带，该区域内的频率分量被部分保留（衰减 3-40 dB）
+        \item Q4：在 3000 Hz 处完全截断，过渡带宽度为 0，该频率以下完全抑制，以上完全保留
+        \item 这种根本差异导致两种方法保留的频率成分不完全相同，即使使用相同的名义截止频率
+    \end{itemize}
+    
     \item \textbf{实现方式差异}
     \begin{itemize}
         \item Q3：时域卷积，逐样本处理，可实时实现
@@ -1876,23 +1944,57 @@ Q3 和 Q4 的解调结果相关系数为 $r = 0.741$（中等正相关），表�
     \end{itemize}
 \end{enumerate}
 
-\textbf{结论：}相关系数 0.741 表明两种方法在主要信号成分上具有良好的一致性，差异主要来自滤波器实现方式的本质不同。两种方法都成功地完成了 AM 信号的解调，提取出清晰可辨的音频信号。
+\textbf{结论：}相关系数 0.402 表明两种方法在信号细节上存在显著差异，主要来自滤波器实现方式的本质不同：
 
-\textbf{4. 波形对比（图 \ref{fig:q4_comparison}）}
+\begin{itemize}
+    \item \textbf{非线性相位失真}：Q3 的 IIR 滤波器使不同频率分量经历不同的延迟，导致波形扭曲
+    \item \textbf{Gibbs 振铃效应}：Q4 的理想滤波器在时域产生 sinc 函数振荡，影响瞬态响应
+    \item \textbf{过渡带处理}：Q3 在 2500-3500 Hz 渐变衰减，Q4 在 3000 Hz 陡峭截断
+    \item \textbf{频率分量保留}：两种方法实际保留的频率成分不完全相同
+\end{itemize}
+
+尽管相关性较低，但两种方法都成功完成了解调任务：
+\begin{itemize}
+    \item 两种方法都使用相同的参数 $f_d = 3000$ Hz（通过对称峰值法确定）
+    \item 两种方法都成功提取了可辨识的音频信号
+    \item 差异反映了理论（理想滤波器）与实践（可实现滤波器）之间的固有权衡
+    \item 在实际应用中，应根据具体需求（实时性、相位线性、计算复杂度等）选择合适的方法
+\end{itemize}
+
+\textbf{4. 波形对比}
+
+\textbf{(1) 全时域波形对比（图 \ref{fig:q4_full_comparison}）}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{codes/Q4/output/Q4_vs_Q3_full_comparison.png}
+    \caption{Q3 与 Q4 解调信号全时域波形对比（全部 31265 个采样点）}
+    \label{fig:q4_full_comparison}
+\end{figure}
+
+全时域波形对比图展示了整个信号的总体特征：
+\begin{itemize}
+    \item \textbf{整体包络一致}：两种方法得到的信号包络基本一致，说明都成功恢复了音频的幅度调制特性
+    \item \textbf{周期性振荡}：两种信号都呈现明显的周期性振荡，这是原始音频信号的固有特性
+    \item \textbf{峰值位置对应}：主要的峰值和谷值位置基本对应，验证了两种方法在宏观上的一致性
+    \item \textbf{细节差异}：虽然整体趋势相同，但在细节上存在差异，这在局部放大图中更加明显
+\end{itemize}
+
+\textbf{(2) 局部细节对比（图 \ref{fig:q4_comparison}）}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{codes/Q4/output/Q4_vs_Q3_comparison.png}
-    \caption{Q3 与 Q4 解调信号波形对比（前 2000 个采样点）}
+    \caption{Q3 与 Q4 解调信号局部波形对比（前 2000 个采样点）}
     \label{fig:q4_comparison}
 \end{figure}
 
-从波形对比图可以观察到：
+从局部波形对比图可以更清楚地观察到细节差异：
 \begin{itemize}
-    \item \textbf{整体趋势}：两种方法得到的信号都呈现周期性振荡
-    \item \textbf{振荡幅度}：Q3 的震荡幅度更加显著，这主要是由于 IIR 滤波器的非线性相位失真
+    \item \textbf{振荡幅度差异}：Q3（红色）的震荡幅度更加显著，这主要是由于 IIR 滤波器的非线性相位失真
     \item \textbf{相位失真效应}：Q3 中不同频率分量经过 Butterworth 滤波器后产生不同的群延迟，导致波形产生更明显的振荡和失真
-    \item \textbf{Q4 的特性}：虽然理想滤波器会产生 Gibbs 振铃，但其线性相位特性保持了各频率分量的时间关系，整体波形相对更接近真实基带信号
+    \item \textbf{波形同步性}：两种方法的波形在峰值位置基本对应，但具体形状有明显差异
+    \item \textbf{Q4 的特性}：Q4（蓝色）虽然理想滤波器会产生 Gibbs 振铃，但其线性相位特性保持了各频率分量的时间关系，整体波形相对更平滑
 \end{itemize}
 
 \subsubsection{理想滤波器的 Gibbs 现象}
@@ -2117,7 +2219,7 @@ Q4 生成的解调音频文件特性：
 
 在完成四个子问题的过程中，我对信号处理的核心概念有了更深刻的认识：
 
-\textbf{频域分析的重要性：}通过 Q1 的频谱分析，我认识到频域是理解信号特性的关键视角。时域信号可能看起来复杂无规律，但在频域中，其结构往往一目了然。通过 FFT 变换和频谱可视化，我成功估计出载波频率偏差 $f_d = 3225.1032$ Hz，这为后续的解调工作奠定了基础。这让我体会到，\textbf{选择正确的分析域往往是解决问题的关键}。
+\textbf{频域分析的重要性：}通过 Q1 的频谱分析，我认识到频域是理解信号特性的关键视角。时域信号可能看起来复杂无规律，但在频域中，其结构往往一目了然。通过对称峰值分析，我成功确定频谱对称轴即频率偏差 $f_d = f_c - \tilde{f_c} \approx 3000$ Hz（而非简单的峰值搜索得到的 3225 Hz），这为后续的解调工作奠定了基础。这让我体会到，\textbf{选择正确的分析域和正确理解频谱特征往往是解决问题的关键}。
 
 \textbf{滤波器设计的工程权衡：}Q2 中设计 8 阶 Butterworth 滤波器时，我深刻体会到了理论与实践的差距。理想滤波器虽然性能完美，但无法实现；而实际滤波器需要在截止陡度、阻带衰减、通带平坦度、相位线性度等多个指标间权衡。选择 Butterworth 滤波器是因为其最大平坦幅度特性，8 阶设计则是在性能和复杂度间的折中。这让我理解了\textbf{工程设计没有完美方案，只有最合适的方案}。
 
@@ -2133,7 +2235,12 @@ Q4 生成的解调音频文件特性：
 
 \textbf{第三方库的使用：}学会了如何选择和使用优秀的第三方库。\texttt{hound} 用于 WAV 文件处理，\texttt{rustfft} 实现高效 FFT，\texttt{plotters} 生成专业图表，\texttt{num-complex} 处理复数运算。这些库都经过良好测试，使用它们大大提高了开发效率。这让我认识到\textbf{站在巨人的肩膀上，专注于问题本身而非重复造轮子}。
 
-\textbf{调试与优化：}在实现过程中遇到了许多实际问题，如频率搬移方向错误、滤波器系数计算精度、FFT 结果归一化等。通过仔细分析中间结果、对比理论值、编写验证程序等方法逐一解决。特别是在高通滤波器设计中，采用频谱反转法（Spectral Inversion）代替传统的模拟域变换，实现了高精度的截止频率控制（误差 $< 0.01\%$），使得 Q3 和 Q4 的解调结果相关性达到 0.741，验证了两种方法的正确性。
+\textbf{调试与优化：}在实现过程中遇到了许多实际问题，如频率搬移方向错误、滤波器系数计算精度、FFT 结果归一化、频率偏差估计方法等。通过仔细分析中间结果、对比理论值、编写验证程序等方法逐一解决。特别是：
+\begin{itemize}
+    \item \textbf{频率偏差估计}：发现频谱在 3000 Hz 附近对称分布，通过对称峰值法（2775.20 Hz 和 3225.16 Hz 的中点）得到正确的 $f_d = 3000$ Hz，而非单纯寻找能量峰值（3225 Hz）
+    \item \textbf{高通滤波器设计}：采用频谱反转法（Spectral Inversion）代替传统的模拟域变换，实现了高精度的截止频率控制（误差 $< 0.01\%$）
+    \item \textbf{方法对比与相关性分析}：Q3 和 Q4 的解调结果相关系数为 0.402。通过振幅归一化验证，发现相关系数对振幅缩放不敏感（归一化前后相关系数相同），这是皮尔逊相关系数的固有性质。0.402 的低相关性反映的是波形\textbf{形状}差异（IIR 滤波器的非线性相位失真 vs 理想滤波器的 Gibbs 振铃），而非振幅差异（Q3 幅度比 Q4 大 28\%）
+\end{itemize}
 
 这些实践经历让我深刻认识到：\textbf{验证是确保正确性的关键，系统性思考是解决问题的基础}。要通过多种方法验证结果，确保算法实现符合理论预期。
 
@@ -2192,7 +2299,7 @@ AM 解调的本质是\textbf{频谱搬移 + 滤波}。调制时，基带信号�
 
 \subsubsection{2. 频率偏差的影响}
 
-本次设计中，原始信号存在频率偏差 $f_d = 3225.1032$ Hz，这导致解调不当时信号分布在错误的频率范围。通过 Q1 的精确估计，Q3 和 Q4 都能正确补偿这个偏差。这说明\textbf{准确的参数估计是后续处理的基础}。
+本次设计中，原始信号存在频率偏差 $f_d = f_c - \tilde{f_c} \approx 3000$ Hz，这导致解调不当时信号频谱整体偏移。通过 Q1 的对称峰值分析，准确确定了频谱对称轴位置，Q3 和 Q4 都能正确补偿这个偏差。这说明\textbf{准确理解频谱特征和正确的参数估计方法是后续处理的基础}。需要注意的是，频谱中的峰值（如 3225 Hz）反映的是原始信号的能量分布，而非频率偏差本身。
 
 \subsubsection{3. 时域与频域的选择}
 
@@ -2226,7 +2333,7 @@ AM 解调的本质是\textbf{频谱搬移 + 滤波}。调制时，基带信号�
 
 \subsubsection{4. 高通滤波器设计错误的发现与修复}
 
-\textbf{挑战}：Q3 和 Q4 的解调结果相关系数仅为 -0.028，远低于预期，让我怀疑实现有误。
+\textbf{挑战}：Q3 和 Q4 的解调结果相关系数仅为 -0.028（负相关），远低于预期，表明实现存在严重错误。
 
 \textbf{初步分析}：最初认为低相关性是由于 Butterworth 滤波器与理想滤波器的特性差异导致，例如：
 \begin{itemize}
@@ -2257,15 +2364,16 @@ AM 解调的本质是\textbf{频谱搬移 + 滤波}。调制时，基带信号�
 
 \textbf{效果验证}：
 \begin{itemize}
-    \item Q3 和 Q4 的相关系数从 -0.028 提升至 0.741（中等正相关）
+    \item Q3 和 Q4 的相关系数从 -0.028 提升至 0.402（弱正相关）
     \item 两种方法现在都正确地处理相同的频率范围
-    \item 剩余的差异（MSE $= 4.74 \times 10^{-2}$）主要来自滤波器实现方式的本质不同：
+    \item 仍存在显著差异（MSE $= 4.99 \times 10^{-2}$，SNR $= -20.76$ dB）主要来自滤波器实现方式的本质不同：
     \begin{itemize}
-        \item 渐变过渡带 vs 砖墙截止
-        \item 非线性相位 vs 线性相位
-        \item 平滑响应 vs Gibbs 振铃
+        \item \textbf{过渡带特性}：渐变过渡带（-48 dB/octave）vs 理想砖墙截止（无过渡带）
+        \item \textbf{相位响应}：非线性相位（群延迟随频率变化）vs 线性相位（频域乘法）
+        \item \textbf{时域效应}：平滑响应（IIR 递归特性）vs Gibbs 振铃（sinc 函数截断）
+        \item \textbf{波形失真}：Q3 的相位失真导致明显振荡，Q4 的振铃效应影响瞬态响应
     \end{itemize}
-    \item 两种方法都成功解调出清晰可辨的音频信号
+    \item 两种方法都成功解调出可辨识的音频信号，但波形细节存在明显差异
 \end{itemize}
 
 \textbf{经验教训}：
@@ -2605,7 +2713,7 @@ s = \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}} = \frac{2f_s(1-z^{-1})}{1+z^{-1}}
 
 \textbf{本项目参数：}
 \begin{itemize}
-    \item 高通滤波器：$f_c = 3225.1032$ Hz，$\omega_c = 2 \times 22050 \times \tan(\pi \times 3225.1032 / 22050) \approx 21475.89$ rad/s
+    \item 高通滤波器：$f_c = 3000.1823$ Hz，$\omega_c = 2 \times 22050 \times \tan(\pi \times 3000.1823 / 22050) \approx 19893.65$ rad/s
     \item 低通滤波器：$f_c = 4000$ Hz，$\omega_c = 2 \times 22050 \times \tan(\pi \times 4000 / 22050) \approx 26682.17$ rad/s
 \end{itemize}
 
@@ -2858,18 +2966,18 @@ b &= [1.221 \times 10^{-3}, 9.770 \times 10^{-3}, 3.420 \times 10^{-2}, \ldots] 
 a &= [1.000, -2.183, 2.990, -2.531, \ldots]
 \end{align*}
 
-\textbf{高通滤波器（$f_c = 3225.1032$ Hz）：}
+\textbf{高通滤波器（$f_c = 3000.1823$ Hz）：}
 
 \begin{enumerate}
-    \item 镜像频率：$f_c' = 22050/2 - 3225.1032 = 7799.8968$ Hz
+    \item 镜像频率：$f_c' = 22050/2 - 3000.1823 = 8024.8177$ Hz
     \item 设计低通滤波器（步骤同上）
     \item 对奇数索引系数取反
 \end{enumerate}
 
 结果（9个系数）：
 \begin{align*}
-b &= [8.459 \times 10^{-2}, -6.767 \times 10^{-1}, 2.369, \ldots] \\
-a &= [1.000, -3.304, 5.500, -5.642, \ldots]
+b &= [1.020 \times 10^{-1}, -8.162 \times 10^{-1}, 2.857, \ldots] \\
+a &= [1.000, -3.630, 6.427, -6.942, \ldots]
 \end{align*}
 
 注意$b$和$a$系数符号交替，体现了频谱反转特性。
@@ -2901,8 +3009,8 @@ H(e^{j\omega}) = H(z)|_{z=e^{j\omega}} = \frac{\sum_{k=0}^{n}b_k e^{-j\omega k}}
 \textbf{高通滤波器：}
 \begin{itemize}
     \item 阶数：$n = 8$
-    \item 截止频率：$f_c = 3225.1032$ Hz（估计的载波频率$f_d$）
-    \item 归一化截止频率：$\omega_c = 2\pi f_c / f_s = 0.9186$ rad
+    \item 截止频率：$f_c = 3000.1823$ Hz（通过对称峰值法确定的频率偏差$f_d$）
+    \item 归一化截止频率：$\omega_c = 2\pi f_c / f_s = 0.8549$ rad
     \item 功能：抑制低频直流分量和低频噪声
 \end{itemize}
 
@@ -3136,7 +3244,8 @@ cargo run --release # 运行（输出文件在 output/ 目录下）
     \item \texttt{Q4\_demodulated.wav} - 解调后音频文件
     \item \texttt{Q4\_results.txt} - 各阶段频谱峰值频率
     \item \texttt{Q4\_comparison.txt} - Q3 vs Q4 对比指标
-    \item \texttt{Q4\_vs\_Q3\_comparison.png} - 波形对比图
+    \item \texttt{Q4\_vs\_Q3\_full\_comparison.png} - 全时域波形对比图
+    \item \texttt{Q4\_vs\_Q3\_comparison.png} - 局部波形对比图（前2000采样点）
 \end{itemize}
 
 \subsection{完整源代码}
